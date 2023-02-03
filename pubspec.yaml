@@ -1,0 +1,47 @@
+name: ffigen_demo
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  ffigen: ^7.2.4
+
+ffigen:
+  name: SwiftLibrary
+  description: Bindings for swift_api.
+  language: objc
+  output: 'lib/swift_api_bindings.dart'
+  exclude-all-by-default: true
+  objc-interfaces:
+    include:
+      - 'Addition'
+      - 'AudioPlayer'
+    module:
+      'Addition': 'addition'
+      'AudioPlayer': 'audio_module'
+  headers:
+    entry-points:
+      - '/Users/ujas/StudioProjects/ffigen_demo/ios/Runner/addition.h'
+      - '/Users/ujas/StudioProjects/ffigen_demo/ios/Runner/audio_player.h'
+    include-directives:
+      - '/Users/ujas/StudioProjects/ffigen_demo/ios/Runner/addition.h'
+      - '/Users/ujas/StudioProjects/ffigen_demo/ios/Runner/audio_player.h'
+  preamble: |
+    // ignore_for_file: camel_case_types, non_constant_identifier_names
+    // ignore_for_file: unused_element, unused_field, return_of_invalid_type
+    // ignore_for_file: void_checks, annotate_overrides
+    // ignore_for_file: no_leading_underscores_for_local_identifiers
+    // ignore_for_file: library_private_types_in_public_api
+
+flutter:
+  uses-material-design: true
